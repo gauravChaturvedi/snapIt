@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Main from './Main.jsx';
 import BankScan from '../components/BankScan.jsx';
+import DocScan from '../components/DocScan.jsx';
 
 class Routes extends Component {
   static propTypes = {
@@ -19,6 +20,7 @@ class Routes extends Component {
       <Router history={hashHistory}>
         <Route path="/" component={Main} />
         <Route path="/bank-scan" component={BankScan} />
+        <Route path="/doc-scan" component={DocScan} />
       </Router>
     );
   }
