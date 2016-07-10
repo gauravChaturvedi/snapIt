@@ -11,12 +11,12 @@ const __DEV__ = __PROD__ === false;
 
 const packageFile = require('./package.json');
 
- // Take cordova enviroment, if not prod, if not dev
+// Take cordova enviroment, if not prod, if not dev
 const enviroment = packageFile.enviroments[
-  (__CORDOVA__ && '__CORDOVA__') ||
-  (__PROD__ && '__PROD__') ||
-  (__DEV__ && '__DEV__')
-];
+(__CORDOVA__ && '__CORDOVA__') ||
+(__PROD__ && '__PROD__') ||
+(__DEV__ && '__DEV__')
+  ];
 
 const __SSR__ = enviroment.__SSR__;
 const __DEVTOOLS__ = enviroment.__DEVTOOLS__;
@@ -49,18 +49,27 @@ const webpackConfig = {
       __CLIENT__: JSON.stringify(true),
       __SERVER__: JSON.stringify(false)
     })),
-    new ExtractTextPlugin('style.css')
-  ].concat(__PROD__ ? [
-    new webpack.optimize.UglifyJsPlugin({
-      output: {
-        comments: false
-      },
-      compress: {
-        warnings: false
-      },
-      sourceMap: false
+    new ExtractTextPlugin('style.css'),
+    new HtmlWebpackPlugin({
+      template: './index.html',
+      hash: false,
+      filename: 'index.html',
+      inject: false,
+      minify: {
+        collapseWhitespace: true
+      }
     })
-  ] : []),
+  ].concat(__PROD__ ? [
+      new webpack.optimize.UglifyJsPlugin({
+        output: {
+          comments: false
+        },
+        compress: {
+          warnings: false
+        },
+        sourceMap: false
+      })
+    ] : []),
   module: {
     loaders: [
       {
@@ -83,16 +92,20 @@ const webpackConfig = {
             }
           }
         }
-      },
-      {
-        test: /\.(scss|css)$/,
-        loader: __PROD__ ? ExtractTextPlugin.extract(
-          'style',
-          'css?modules&importLoaders=2&sourceMap!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap=true&sourceMapContents=true'
-        )
-        : 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap'
-      },
-      {
+      }, {
+        test: /\.scss/,
+        loader: 'style!css!autoprefixer!sass?outputStyle=expanded'
+      }, {
+        test: /\.css$/,
+        exclude: [/\.raw\.css$/, /\.useable\.css$/, /node_module/],
+        loader: 'style!css!autoprefixer'
+      }, {
+        test: /\.useable\.css$/,
+        loader: 'style/useable!raw!autoprefixer'
+      }, {
+        test: /\.raw\.css$/,
+        loader: 'style!raw!autoprefixer'
+      }, {
         test: /\.(png|jpg)$/,
         loader: 'url?limit=8192'
       }, {

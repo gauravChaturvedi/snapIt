@@ -3,8 +3,9 @@ import { Router, Route, hashHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Main from './Main.jsx';
+import BankScan from '../components/BankScan.jsx';
 
-class AppRoute extends Component {
+class Routes extends Component {
   static propTypes = {
     stores: PropTypes.object,
     actions: PropTypes.object
@@ -17,10 +18,11 @@ class AppRoute extends Component {
     return (
       <Router history={hashHistory}>
         <Route path="/" component={Main} />
+        <Route path="/bank-scan" component={BankScan} />
       </Router>
     );
   }
 }
 export default connect(state => ({ stores: state }), dispatch => ({
   actions: {}
-}))(AppRoute);
+}))(Routes);

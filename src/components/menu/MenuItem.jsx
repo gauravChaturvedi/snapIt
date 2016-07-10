@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import classnames from 'classnames';
+import History from '../../utils/History.js';
 
 export default class MenuItem extends Component {
   static propTypes = {
@@ -13,7 +13,8 @@ export default class MenuItem extends Component {
   }
 
   onClick() {
-    alert('Clicked on the menu item brio deoude buddy');
+    console.log('This is the route', this.props.route);
+    History.pushState({}, this.props.route);
   }
 
   render() {

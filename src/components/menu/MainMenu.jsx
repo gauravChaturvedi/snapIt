@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import classnames from 'classnames';
 
 import MenuItem from './MenuItem.jsx';
+import './MainMenu.scss';
 
 export default class MainMenu extends Component {
   static propTypes = {};
@@ -12,11 +12,10 @@ export default class MainMenu extends Component {
 
   render() {
     return (
-      <ul>
+      <ul className="menu-items">
         <MenuItem name="Search Client" route="/" iconClass="search-client"/>
         <MenuItem name="Capture proof of residence" route="/" iconClass="residence-proof"/>
-        <MenuItem name="Capture bank details" route="/" iconClass="bank-details"/>
-        <button id="scanBtn"> Scan Now!</button>
+        <MenuItem name="Capture bank details" route="/bank-scan" iconClass="bank-details"/>
       </ul>
     );
   }
