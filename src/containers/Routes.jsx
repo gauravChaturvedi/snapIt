@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import Main from './Main.jsx';
 import BankScan from '../components/BankScan.jsx';
 import DocScan from '../components/DocScan.jsx';
+import IdScan from '../components/IdScan.jsx';
 
 class Routes extends Component {
   static propTypes = {
@@ -21,6 +22,7 @@ class Routes extends Component {
         <Route path="/" component={Main} />
         <Route path="/bank-scan" component={BankScan} />
         <Route path="/doc-scan" component={DocScan} />
+        <Route path="/id-scan" component={IdScan} />
       </Router>
     );
   }

@@ -13,7 +13,7 @@ export default class MainMenu extends Component {
   render() {
     return (
       <ul className="menu-items">
-        <MenuItem name="Search Client" route="/" iconClass="search-client"/>
+        <MenuItem name="Search Client" route="/id-scan" iconClass="search-client"/>
         <MenuItem name="Capture proof of residence" route="/doc-scan" iconClass="residence-proof"/>
         <MenuItem name="Capture bank details" route="/bank-scan" iconClass="bank-details"/>
       </ul>
