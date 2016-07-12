@@ -13,7 +13,6 @@ export default class MenuItem extends Component {
   }
 
   onClick() {
-    console.log('This is the route', this.props.route);
     History.pushState({}, this.props.route);
   }
 
