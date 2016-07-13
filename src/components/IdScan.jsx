@@ -70,7 +70,6 @@ export default class IdScan extends Component {
       <div>
         <button id="imageBtn" onClick={::this.scanNow}> Scan ID Now!</button>
         { this.state.imgSrc ? <img className="id-image" src={this.state.imgSrc}></img> : null }
-        <img id="abcdefgh" src="img.png"></img>
       </div>
     );
   }
