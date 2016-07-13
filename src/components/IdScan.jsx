@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Platform from '../utils/Platform.js';
+import Axios from 'axios';
+import img from '../../img.png';
 
 export default class IdScan extends Component {
   static propTypes = {};
@@ -11,12 +13,56 @@ export default class IdScan extends Component {
     };
   }
 
+  componentDidMount() {
+    // Send the captured image to OCR service
+    const config = {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    };
+
+    let data = new FormData();
+    data.append('advisorId', 1);
+    data.append('documentType', 'ID');
+    data.append('img', new Blob(['img.png'], { type: 'img' }));
+
+    Axios.post('http://52.209.38.152/ocr/search', data, config)
+      .then((response) => {
+        alert('Ye hai respoanse' + response);
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   onSuccess(mediaFiles) {
     let i, path, len;
 
     for (i = 0, len = mediaFiles.length; i < len; i += 1) {
       path = mediaFiles[i].fullPath;
+
       alert('Your image is available at ' + path);
+
+      // Send the captured image to OCR service
+      const config = {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      };
+
+      let data = new FormData();
+      data.append('advisorId', 1);
+      data.append('documentType', 'ID');
+      data.append('img', new Blob([path], { type: 'img' }));
+
+      // Axios.post('http://52.209.38.152/ocr/search', data, config)
+      Axios.post('http://requestb.in/195v1zu1', data, config)
+        .then((response) => {
+          alert('Ye hai respoanse' + response);
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      // SetState to show file on the app
       this.setState({
         imgSrc: mediaFiles[i].fullPath
       });
@@ -47,6 +93,7 @@ export default class IdScan extends Component {
       <div>
         <button id="imageBtn" onClick={::this.scanNow}> Scan ID Now!</button>
         { this.state.imgSrc ? <img className="id-image" src={this.state.imgSrc}></img> : null }
+        <img id="abcdefgh" src="img.png"></img>
       </div>
     );
   }

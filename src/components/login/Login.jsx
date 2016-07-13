@@ -15,9 +15,8 @@ export default class Login extends Component {
     const advisorId = this.refs.advisorId && this.refs.advisorId.value;
     const advisorPassword = this.refs.advisorPassword && this.refs.advisorPassword.value;
     if (advisorId && advisorPassword) {
-      if ( advisorId === 'advisor1' && advisorPassword === 'pass1') {
+      if ( advisorId === 'a' && advisorPassword === 'a') {
         this.props.LoginActions.loginSuccess();
-        alert('Logged in successfully');
         History.pushState({}, '/');
       } else {
         alert('Incorrect username/password, please try again !');
