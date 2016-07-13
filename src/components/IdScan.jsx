@@ -13,27 +13,6 @@ export default class IdScan extends Component {
     };
   }
 
-  componentDidMount() {
-    // Send the captured image to OCR service
-    const config = {
-      headers: { 'Content-Type': 'multipart/form-data' }
-    };
-
-    let data = new FormData();
-    data.append('advisorId', 1);
-    data.append('documentType', 'ID');
-    data.append('img', new Blob(['img.png'], { type: 'img' }));
-
-    Axios.post('http://52.209.38.152/ocr/search', data, config)
-      .then((response) => {
-        alert('Ye hai respoanse' + response);
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
   onSuccess(mediaFiles) {
     let i, path, len;
 
@@ -52,10 +31,8 @@ export default class IdScan extends Component {
       data.append('documentType', 'ID');
       data.append('img', new Blob([path], { type: 'img' }));
 
-      // Axios.post('http://52.209.38.152/ocr/search', data, config)
-      Axios.post('http://requestb.in/195v1zu1', data, config)
+      Axios.post('http://52.209.38.152/ocr/search', data, config)
         .then((response) => {
-          alert('Ye hai respoanse' + response);
           console.log(response);
         })
         .catch((error) => {
