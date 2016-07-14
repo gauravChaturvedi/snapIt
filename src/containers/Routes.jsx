@@ -5,9 +5,9 @@ import store from '../store/configureStore.js';
 import History from '../utils/History.js';
 
 import Main from './Main.jsx';
-import BankScan from '../components/BankScan.jsx';
-import DocScan from '../components/DocScan.jsx';
-import IdScan from '../components/IdScan.jsx';
+import BankScan from '../components/bankscan/BankScan.jsx';
+import DocScan from '../components/docscan/DocScan.jsx';
+import IdScan from '../components/idscan/IdScan.jsx';
 import Login from '../components/login/Login.jsx';
 
 class Routes extends Component {

@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import History from '../../utils/History.js';
 import * as LoginActions from '../../actions/LoginActions';
 
+import './Login.scss';
+
 export default class Login extends Component {
   static propTypes = {};
 
@@ -28,10 +30,10 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div>
-        Advisor Id:<input ref="advisorId" type="text"></input>
+      <div className="login-container">
+        <input className="login-input" ref="advisorId" type="text" placeholder="Advisor Id"></input>
         <br/><br/>
-        Password:<input ref="advisorPassword" type="password"></input>
+        <input className="login-input" ref="advisorPassword" type="password" placeholder="Password"></input>
         <br/><br/>
         <button id="scanBtn" onClick={::this.authenticate}> Go!</button>
       </div>

@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import Platform from '../utils/Platform.js';
+import Platform from '../../utils/Platform.js';
+
+import './BankScan.scss';
 
 const cardIOResponseFields = [
   "cardType",
@@ -48,7 +50,7 @@ export default class BankScan extends Component {
 
   render() {
     return (
-      <div>
+      <div className="col-12 bank-scan-container" >
         <button id="scanBtn" onClick={::this.scanNow}> Scan Now!</button>
       </div>
     );

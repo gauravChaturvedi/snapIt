@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import Platform from '../utils/Platform.js';
+import Platform from '../../utils/Platform.js';
 import Axios from 'axios';
-import img from '../../img.png';
+
+import './IdScan.scss';
 
 export default class IdScan extends Component {
   static propTypes = {};
@@ -67,9 +68,9 @@ export default class IdScan extends Component {
 
   render() {
     return (
-      <div>
-        <button id="imageBtn" onClick={::this.scanNow}> Scan ID Now!</button>
+      <div className="col-12 id-scan-container">
         { this.state.imgSrc ? <img className="id-image" src={this.state.imgSrc}></img> : null }
+        <button id="imageBtn" onClick={::this.scanNow}> Scan ID Now!</button>
       </div>
     );
   }

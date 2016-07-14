@@ -5,6 +5,7 @@ import Routes from './containers/Routes.jsx';
 import Platform from './utils/Platform.js';
 
 import './Main.scss';
+import logoPng from '../liblogo.png';
 
 const app = {
   // Application Constructor
@@ -19,11 +20,10 @@ const app = {
   },
 
   initReactApp() {
-    const logoSrc = 'liblogo.png';
     ReactDOM.render(
       <App>
         <div className="logo-header row col-12">
-          <img src={logoSrc} />
+          <img src={logoPng} />
         </div>
         <Routes/>
       </App>, document.getElementById('app')

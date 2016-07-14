@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import Platform from '../utils/Platform.js';
+import Platform from '../../utils/Platform.js';
+
+import './DocScan.scss';
 
 export default class DocScan extends Component {
   static propTypes = {};
@@ -36,7 +38,7 @@ export default class DocScan extends Component {
 
   render() {
     return (
-      <div>
+      <div className="col-12 doc-scan-container">
         <button id="imageBtn" onClick={::this.scanNow}> Scan Doc Now!</button>
       </div>
     );
